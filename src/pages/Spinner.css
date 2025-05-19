@@ -1,0 +1,53 @@
+/* Spinner.css - Option B: Three Pulsing Dots */
+
+.pulsing-dots-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px; /* Space between dots */
+  min-height: 60px; /* Ensure it takes up some space for alignment */
+  margin: 40px auto; /* Same margin as Option A for consistency if used widely */
+}
+
+.pulsing-dots-spinner .dot {
+  width: 12px;
+  height: 12px;
+  background-color: #004aad; /* Department Blue */
+  border-radius: 50%;
+  animation: pulse 1.4s infinite ease-in-out both;
+}
+
+/* Stagger the animation for each dot */
+.pulsing-dots-spinner .dot:nth-child(1) {
+  animation-delay: -0.32s;
+}
+
+.pulsing-dots-spinner .dot:nth-child(2) {
+  animation-delay: -0.16s;
+}
+
+/* .pulsing-dots-spinner .dot:nth-child(3) has no delay, effectively 0s */
+
+@keyframes pulse {
+  0%, 80%, 100% {
+    transform: scale(0.5); /* Start small, end small (or opacity: 0.3) */
+    opacity: 0.5;
+  }
+  40% {
+    transform: scale(1); /* Grow to full size */
+    opacity: 1;
+  }
+}
+
+/* Optional: Full-page overlay styling for pulsing dots (same concept as Option A) */
+/*
+.spinner-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+*/

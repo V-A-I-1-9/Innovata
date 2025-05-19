@@ -1,0 +1,45 @@
+/* src/pages/AppLayout.module.css */
+
+.appLayout {
+  display: flex;
+  flex-direction: column;
+  /*
+    This component is expected to be a child of #root.
+    In App.css, #root is already set up as:
+    #root {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+    This means #root expands to fill its parent (body).
+    So, .appLayout, as a direct child that takes up the routing output,
+    should also expand. flex: 1; or min-height: 100%; can ensure it fills #root.
+    Let's use flex: 1; assuming #root is its direct flex parent.
+  */
+  flex: 1; /* Allows .appLayout to grow and shrink within the #root flex container */
+}
+
+.mainContent {
+  flex-grow: 1; /* This is key: it makes the main content area take up available space */
+  width: 100%;
+  max-width: 1280px; /* Constraint for content width on large screens for readability */
+  margin-left: auto;  /* Centers the content block when max-width is active */
+  margin-right: auto;
+  padding: 24px;     /* Default padding (3 * 8px) - mobile-first */
+}
+
+/* Responsive padding adjustments */
+
+/* For tablets and medium screens */
+@media (min-width: 768px) {
+  .mainContent {
+    padding: 32px 40px; /* Top/Bottom (4 * 8px), Left/Right (5 * 8px) */
+  }
+}
+
+/* For larger desktops */
+@media (min-width: 1024px) {
+  .mainContent {
+    padding: 24px 64px; /* Top/Bottom (6 * 8px), Left/Right (8 * 8px) */
+  }
+}

@@ -1,0 +1,228 @@
+/* src/components/prizes/Prizes.module.css */
+
+.prizesPage {
+  width: 100%;
+  animation: fadeInPage 0.5s ease-out;
+}
+
+.pageHeader {
+  text-align: center;
+  margin-bottom: 30px; /* Reduced margin */
+  padding-top: 16px;
+}
+
+.headerIcon {
+  font-size: 2.8rem; /* Slightly larger */
+  color: var(--color-accent, #ffcc00); /* Using accent color */
+  margin-bottom: 8px;
+}
+
+.pageTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-heading, #101828);
+  margin-bottom: 8px;
+}
+
+.pageSubtitle {
+  font-size: 1.1rem;
+  color: var(--color-text-secondary, #4A5568);
+  max-width: 600px;
+  margin: 0 auto 30px auto; /* Added bottom margin */
+}
+
+.filterContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+  gap: 10px;
+  padding: 12px;
+  background-color: var(--color-light-gray, #f8f9fa);
+  border-radius: 8px;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.filterLabel {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--color-text-secondary, #4A5568);
+}
+
+.yearSelect {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #cbd5e0;
+  font-size: 1rem;
+  font-family: inherit;
+  background-color: var(--color-background, #fff);
+}
+.yearSelect:focus {
+  border-color: var(--color-primary, #004aad);
+  box-shadow: 0 0 0 3px rgba(0, 74, 173, 0.15);
+  outline: none;
+}
+
+
+.prizesGrid {
+  display: grid;
+  /* Using 1fr for single column on mobile, then expanding */
+  grid-template-columns: 1fr;
+  gap: 24px;
+  max-width: 900px; /* Max width for the grid content */
+  margin: 0 auto; /* Center the grid */
+}
+
+.prizeItem {
+  background-color: var(--color-background, #fff);
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  display: flex; /* For side-by-side icon and content */
+  overflow: hidden; /* Ensure icon background doesn't bleed */
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+
+.prizeItem:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.prizeIconColor {
+  background-color: var(--color-primary, #004aad); /* Primary color for icon background */
+  padding: 24px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0; /* Prevent icon area from shrinking */
+}
+
+.trophyIcon {
+  font-size: 2.5rem;
+  color: var(--color-accent, #ffcc00); /* Accent color for the trophy itself */
+}
+
+.prizeDetails {
+  padding: 20px 24px;
+  flex-grow: 1; /* Allow details to take remaining space */
+}
+
+.prizeYear {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-text-secondary, #4A5568);
+  background-color: var(--color-light-gray, #f8f9fa);
+  padding: 3px 8px;
+  border-radius: 4px;
+  margin-bottom: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.prizeCategory {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--color-primary-dark, #003b8e); /* Darker primary for this heading */
+  margin-bottom: 6px;
+}
+
+.prizeName {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--color-heading, #101828);
+  margin-bottom: 12px;
+}
+
+.prizeWinner,
+.prizeProject {
+  font-size: 0.95rem;
+  color: var(--color-text, #344054);
+  margin-bottom: 8px;
+  line-height: 1.5;
+  display: flex; /* Align icon and text */
+  align-items: center;
+  gap: 8px; /* Space between icon and text */
+}
+
+.prizeWinner strong {
+  font-weight: 600;
+  color: var(--color-heading, #101828);
+}
+
+.prizeProject em {
+  font-style: normal; /* Or keep italic if preferred */
+}
+
+.detailsLink {
+  display: inline-block; /* Or inline-flex if adding an icon directly */
+  margin-top: 16px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-primary, #004aad);
+  text-decoration: none;
+  padding: 8px 12px;
+  border: 1px solid var(--color-primary-light, #cce0ff);
+  border-radius: 6px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.detailsLink:hover,
+.detailsLink:focus {
+  background-color: var(--color-primary, #004aad);
+  color: white;
+  border-color: var(--color-primary, #004aad);
+  outline: none;
+}
+
+
+/* Loading, Error, No Data States */
+.loadingContainer,
+.errorContainer,
+.noPrizes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 20px;
+  min-height: 200px;
+  color: var(--color-text-secondary, #4A5568);
+  font-size: 1.1rem;
+}
+
+.loadingSpinner {
+  font-size: 2.5rem;
+  color: var(--color-primary, #004aad);
+  animation: spin 1.5s linear infinite;
+  margin-bottom: 16px;
+}
+
+.errorContainer {
+  color: #c53030;
+  font-weight: 500;
+}
+
+
+/* Responsive Grid for Prizes */
+@media (min-width: 768px) {
+  .prizesGrid {
+    /* Can switch to 2 columns if desired, or keep 1 for very prominent cards */
+    /* grid-template-columns: repeat(2, 1fr); */
+  }
+}
+
+/* Animation a- ensure it's defined if not global */
+@keyframes fadeInPage {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

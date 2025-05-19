@@ -1,0 +1,227 @@
+/* src/pages/Header.css */
+
+.header {
+  background-color: #004aad; /* Original medium blue */
+  color: white;
+  padding: 0 16px; /* Mobile padding (2 * 8px) */
+  min-height: 70px; /* Slightly reduced height for mobile, adjust as needed */
+  position: sticky; /* Makes header stick to top */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* Ensures header is above other content */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); /* Softer, more modern shadow */
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Key for aligning items */
+  height: 100%;
+  min-height: inherit; /* Inherit min-height from .header */
+  max-width: 1280px; /* Matches AppLayout.module.css main content width */
+  margin: 0 auto; /* Centers content within the header full width */
+}
+
+.logo-link {
+  display: inline-block; /* Or flex for alignment if text is next to logo */
+}
+
+.logo {
+  display: block; /* Removes extra space below image */
+  height: 40px; /* Base logo height for mobile */
+  object-fit: contain; /* Ensures logo scales nicely without distortion */
+  transition: height 0.3s ease;
+}
+
+.mit-logo {
+  /* Specific styles if MIT logo needs different sizing than ISE */
+}
+
+.ise-logo {
+  /* Specific styles if ISE logo needs different sizing */
+}
+
+.desktop-ise-logo {
+  display: none; /* Hidden on mobile by default */
+}
+
+.nav-ise-logo {
+  display: block; /* Shown in the mobile nav drawer */
+  margin: 24px auto 16px; /* Spacing within the mobile nav */
+  height: 50px;
+}
+
+/* Navigation - Mobile First Styling */
+.nav {
+  display: flex; /* Use flex for easy centering of the ul */
+  flex-direction: column;
+  justify-content: center; /* Center items vertically in mobile drawer */
+  align-items: center; /* Center items horizontally in mobile drawer */
+  position: fixed; /* Full screen overlay */
+  top: 0; /* Align to top, covering header */
+  left: -100%; /* Start off-screen */
+  width: 100%;
+  min-height: 100vh; /* Full viewport height */
+  background-color: #0042a1; /* Slightly darker blue for contrast, or same blue */
+  transition: left 0.35s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Smooth slide-in with easing */
+  padding-top: 80px; /* Space for header */
+  z-index: 999; /* Below header's z-index but above page content */
+}
+
+.nav.nav-open {
+  left: 0; /* Slide in */
+}
+
+.nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center nav items text */
+  gap: 16px; /* Spacing between items in mobile nav */
+}
+
+.nav-item {
+  /* Add styling per item if needed */
+  width: 100%;
+  text-align: center;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.25rem; /* Larger for easier tapping on mobile */
+  padding: 12px 20px; /* Generous padding for tap targets */
+  display: block; /* Make entire area clickable */
+  border-radius: 4px;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  position: relative; /* For pseudo-element underline */
+}
+
+.nav-link:hover,
+.nav-link:focus { /* Add focus for keyboard navigation */
+  background-color: rgba(255, 255, 255, 0.1); /* Subtle background hover */
+  color: #ffdd40; /* Brighter yellow for hover to distinguish from default */
+}
+
+.nav-link.active {
+  font-weight: 600; /* Make active link bolder */
+  color: #ffcc00; /* User's chosen yellow for active, or a distinct color */
+}
+
+/* Optional: Add a subtle underline effect for active links */
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: 6px; /* Adjust position of underline */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%; /* Width of underline relative to text */
+  height: 2px;
+  background-color: #ffcc00; /* Color of the underline */
+  border-radius: 1px;
+}
+
+
+/* Hamburger Menu Button */
+.nav-toggle {
+  display: block; /* Show on mobile */
+  background: none;
+  border: none;
+  color: white;
+  padding: 8px; /* Easier to tap */
+  cursor: pointer;
+  z-index: 1001; /* Above nav overlay but part of header */
+  margin-left: auto; /* Pushes it to the right if nav is also flex item (for desktop) */
+}
+
+.nav-toggle svg {
+  display: block; /* Ensure SVG scales correctly */
+}
+
+/* Tablet and Desktop Styles */
+@media (min-width: 768px) { /* Adjust breakpoint as needed */
+  .header {
+    min-height: 80px; /* Restore desktop height */
+    padding: 0 32px;  /* Desktop padding (4 * 8px) */
+  }
+
+  .logo {
+    height: 50px; /* Logo height for desktop */
+  }
+  
+  .mit-logo {
+    /* Desktop specific mit logo if needed */
+  }
+
+  .ise-logo {
+    /* Desktop specific ise logo if needed */
+  }
+
+  .desktop-ise-logo {
+    display: block; /* Show the second logo on desktop */
+    order: 3; /* Ensure it's on the far right, after nav */
+  }
+
+  .nav-ise-logo {
+    display: none; /* Hide the ISE logo from mobile drawer on desktop */
+  }
+
+  .nav-toggle {
+    display: none; /* Hide hamburger on desktop */
+  }
+
+  .nav {
+    position: static; /* Remove fixed positioning */
+    flex-direction: row; /* Align items horizontally */
+    background-color: transparent; /* No background needed for desktop inline nav */
+    width: auto; /* Take up necessary space */
+    min-height: auto;
+    left: auto; /* Reset mobile positioning */
+    padding-top: 0;
+    transition: none; /* No transition needed for desktop */
+    margin: 0 auto; /* Center the nav block itself, remove if you want nav closer to MIT logo */
+    order: 2; /* Ensures nav is between MIT logo and desktop ISE logo */
+  }
+
+  .nav-list {
+    flex-direction: row; /* Horizontal links */
+    gap: 32px; /* Desktop spacing (was 40px, can adjust) */
+  }
+
+  .nav-link {
+    font-size: 1rem; /* Standard desktop font size */
+    padding: 8px 12px; /* Desktop padding */
+  }
+
+  .nav-link:hover,
+  .nav-link:focus {
+    color: #ffdd40; /* Keep your yellow hover, or a lighter shade if preferred */
+    background-color: transparent; /* No background on desktop hover typically */
+  }
+
+  .nav-link.active {
+    color: #ffcc00; /* Your chosen yellow for active */
+  }
+
+   /* Adjust active underline for desktop if needed, or remove if too busy */
+  .nav-link.active::after {
+    bottom: -4px; /* Position underline relative to bottom of link text */
+    width: 80%; /* Wider underline for desktop */
+  }
+}
+
+@media (min-width: 1024px) {
+  .header {
+    padding: 0 40px; /* Even more padding for large desktops */
+  }
+  .logo {
+    height: 55px;
+  }
+  .nav-list {
+    gap: 40px; /* Restore original gap for very large screens if desired */
+  }
+}

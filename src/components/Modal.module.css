@@ -1,0 +1,88 @@
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6); /* Darker overlay for more focus */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000; /* Ensure it's above other content */
+  opacity: 0;
+  animation: fadeInOverlay 0.3s forwards;
+  padding: 20px; /* Padding for small screens so modal doesn't touch edges */
+}
+
+.modalContent {
+  background-color: var(--color-background, #fff);
+  padding: 24px 30px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* More prominent shadow */
+  width: 100%;
+  max-width: 600px; /* Max width of the modal */
+  max-height: 85vh; /* Max height */
+  overflow-y: auto; /* Scrollable content if it exceeds max-height */
+  transform: scale(0.95) translateY(10px);
+  opacity: 0;
+  animation: slideInModal 0.35s 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  display: flex;
+  flex-direction: column;
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e2e8f0; /* Separator line */
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+}
+
+.modalTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-heading, #101828);
+  margin: 0;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  font-size: 1.5rem; /* Larger close icon */
+  color: var(--color-text-secondary, #666);
+  cursor: pointer;
+  padding: 4px; /* Make tap area slightly larger */
+  line-height: 1;
+  transition: color 0.2s ease;
+}
+
+.closeButton:hover {
+  color: var(--color-primary-dark, #003b8e);
+}
+
+.modalBody {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--color-text, #344054);
+}
+
+.modalBody p {
+  margin-bottom: 1em;
+}
+.modalBody p:last-child {
+  margin-bottom: 0;
+}
+
+@keyframes fadeInOverlay {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInModal {
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}

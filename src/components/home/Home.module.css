@@ -1,0 +1,194 @@
+/* src/components/home/Home.module.css */
+
+.homePageContainer {
+  width: 100%;
+  /* Padding will come from AppLayout's .mainContent, or add specific here if needed */
+}
+
+.heroSection {
+  display: flex;
+  flex-direction: column; /* Mobile-first: stack image and text */
+  align-items: center;
+  text-align: center;
+  padding: 20px 0 40px;
+  margin-top: -24px; /* Vertical padding, horizontal comes from parent */
+  gap: 32px; /* Space between text and image when stacked */
+  /* min-height: calc(80vh - 80px); Example: 80vh minus approx header height. Adjust as needed. */
+  justify-content: center; /* Center content vertically if section is taller */
+}
+
+/* Hero Text Styling */
+.heroTextContainer {
+  max-width: 650px; /* Constrain text width for readability */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center text elements for mobile */
+}
+
+.heroTitle {
+  font-size: 2.5rem; /* Responsive font size: start */
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-heading, #101828); /* Use CSS variable or fallback */
+  margin-bottom: 20px;
+  animation: fadeInSlideUp 0.6s 0.2s ease-out forwards;
+  opacity: 0;
+}
+
+.heroTitle .highlightYear {
+  color: #004aad; /* Department Blue */
+}
+
+.heroSubtitle {
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary, #4A5568); /* Softer text color */
+  margin-bottom: 16px;
+  max-width: 600px;
+  animation: fadeInSlideUp 0.6s 0.4s ease-out forwards;
+  opacity: 0;
+}
+
+.heroDescription {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--color-text, #344054);
+  margin-bottom: 32px;
+  max-width: 580px; /* Slightly narrower for this more detailed text */
+  animation: fadeInSlideUp 0.6s 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+.heroCtaButton {
+  background-color: #004aad; /* Primary blue from your header */
+  color: white;
+  font-size: 1.05rem;
+  font-weight: 500;
+  padding: 14px 28px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex; /* Align icon and text */
+  align-items: center;
+  gap: 8px;
+  transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  animation: fadeInSlideUp 0.6s 0.8s ease-out forwards;
+  opacity: 0;
+  box-shadow: 0 4px 12px rgba(0, 74, 173, 0.2); /* Subtle shadow */
+}
+
+.heroCtaButton:hover,
+.heroCtaButton:focus {
+  background-color: #003b8e; /* Darker shade of blue */
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 74, 173, 0.3);
+}
+
+/* Hero Image Styling */
+.heroImageContainer {
+  order: -1; /* On mobile, show image above text */
+  animation: fadeIn 0.8s 0.1s ease-out forwards;
+  opacity: 0;
+}
+
+.heroImage {
+  max-width: 280px; /* Adjust as needed for your logo's aspect ratio */
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 8px; /* Optional: if it's more of an image than a logo mark */
+  /* Consider a subtle shadow or border if it helps the logo stand out */
+  /* box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08); */
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* Tablet and Desktop Styles */
+@media (min-width: 768px) {
+  .heroSection {
+    flex-direction: row; /* Side-by-side layout */
+    justify-content: space-between; /* Distribute space */
+    align-items: center; /* Vertically align items */
+    text-align: left; /* Align text to the left for desktop an    gap: 40px; /* Space between text and image columns */
+    gap: 40px;
+    padding: 24px 0 60px;
+  }
+
+  .heroTextContainer {
+    order: 1; /* Text on the left */
+    align-items: flex-start; /* Align text elements to the left */
+    flex: 1 1 55%; /* Allow text container to take more space */
+    max-width: none; /* Remove max-width as flex basis handles it */
+  }
+
+  .heroImageContainer {
+    order: 2; /* Image on the right */
+    flex: 1 1 40%; /* Image container نسبی space */
+    display: flex;
+    justify-content: center; /* Center image within its container */
+    align-items: center;
+  }
+
+  .heroImage {
+    max-width: 350px; /* Larger logo/image on desktop */
+  }
+
+  .heroTitle {
+    font-size: 3rem; /* Larger title for desktop */
+  }
+
+  .heroSubtitle {
+    font-size: 1.25rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .heroSection {
+    padding: 32px 0 80px;
+    gap: 60px;
+  }
+
+  .heroImage {
+    max-width: 420px;
+  }
+
+  .heroTitle {
+    font-size: 3.5rem;
+  }
+}
+
+/* Styles for the optional Quick Info Section (if you add it later) */
+/*
+.quickInfoSection {
+  padding: 60px 0;
+  text-align: center;
+}
+.quickInfoSection h2 {
+  font-size: 2rem;
+  margin-bottom: 40px;
+  color: var(--color-heading, #101828);
+}
+.quickInfoCards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+*/
+/* Individual card styling would go here */
