@@ -1,34 +1,23 @@
-/* Apply Flexbox to the body or main container */
+/* Flexbox Layout for Sticky Footer */
 body,
 .main-container {
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* Ensures the body takes at least the full height of the viewport */
+  min-height: 100vh;
 }
 
-/* Keep footer at the bottom */
 .footer {
-  background-color: #003b8e; /* Slightly darker shade of the blue for depth */
-  color: #e0e0e0; /* Light gray for text */
+  background-color: #003b8e;
+  color: #e0e0e0;
   font-size: 0.9rem;
   padding-top: 40px;
   text-align: left;
-  box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.15); /* Softer shadow */
-  margin-top: auto; /* Push footer to the bottom */
+  box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.15);
+  margin-top: auto;
   line-height: 1.6;
 }
 
-/* Profile image in footer with reused size */
-.footer-profile-img {
-  width: 100%;
-  max-width: 160px; /* Same image size as before */
-  border-radius: 12px; /* Slightly rounded corners */
-  margin-bottom: 12px;
-  object-fit: cover; /* Ensures the image fills its box */
-  /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); Optional: adds subtle depth */
-}
-
-/* Footer Content Wrapper */
+/* Wrapper for Footer Sections */
 .footer-content-wrapper {
   max-width: 1280px;
   margin: 0 auto;
@@ -38,7 +27,22 @@ body,
   gap: 32px;
 }
 
-/* Footer heading styles */
+/* Footer Section */
+.footer-section {
+  flex: 1;
+  min-width: 200px;
+}
+
+/* Footer Logo Image */
+.footer-logo {
+  max-width: 160px;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  margin-bottom: 16px;
+}
+
+/* Footer Heading */
 .footer-heading {
   font-size: 1.1rem;
   font-weight: 600;
@@ -58,7 +62,7 @@ body,
   background-color: #ffcc00;
 }
 
-/* Footer Bottom (Copyright) */
+/* Footer Bottom Bar */
 .footer-bottom {
   background-color: rgba(0, 0, 0, 0.2);
   text-align: center;
@@ -71,24 +75,40 @@ body,
   margin: 0;
 }
 
+/* Contact Links */
 .contact-links {
   display: flex;
   flex-direction: row;
-  gap: 8px; /* Space between contact links */
+  gap: 8px;
 }
 
 .footer-link {
-  color: #ffdd40; /* Brighter yellow for links, original #ffcc00 is good too */
+  color: #ffdd40;
   text-decoration: none;
   font-weight: 500;
-  transition: color 0.2s ease-in-out, text-decoration 0.2s ease-in-out;
-  display: inline-block; /* To allow for better hover effect if needed */
+  transition: color 0.2s ease, text-decoration 0.2s ease;
 }
 
 .footer-link:hover,
 .footer-link:focus {
-  color: #fffacd; /* Lighter yellow for hover */
+  color: #fffacd;
   text-decoration: underline;
+}
+
+/* Contact Card */
+.contact-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Profile Image (used in contact cards) */
+.footer-profile-img {
+  max-width: 160px;
+  width: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+  margin-bottom: 12px;
 }
 
 /* Responsive Adjustments */
@@ -101,11 +121,6 @@ body,
     padding: 0 32px 40px;
   }
 
-  .footer-section {
-    flex: 1;
-    min-width: 200px;
-  }
-
   .footer-logo {
     max-height: 45px;
   }
@@ -115,18 +130,14 @@ body,
   .footer-content-wrapper {
     padding: 0 40px 48px;
   }
+
   .footer {
     font-size: 0.95rem;
   }
+
   .footer-heading {
     font-size: 1.15rem;
   }
-}
-
-.contact-card {
-  display: flex;
-  align-items: center;
-  gap: 16px;
 }
 
 @media (max-width: 600px) {
@@ -134,5 +145,20 @@ body,
     flex-direction: column;
     align-items: center;
     text-align: center;
+  }
+}
+
+/* Footer Logo Section: Arrange logos side-by-side on desktop */
+.footer-logo-section {
+  display: flex;
+  flex-direction: column; /* Vertical on mobile */
+  align-items: center;
+  gap: 16px;
+}
+
+@media (min-width: 600px) {
+  .footer-logo-section {
+    flex-direction: row; /* Horizontal on desktop */
+    justify-content: flex-start;
   }
 }

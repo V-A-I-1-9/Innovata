@@ -12,16 +12,18 @@ function Footer() {
           <p className="university-affiliation">
             Maharaja Institute of Technology Mysore
           </p>
-          <img
-            src="/assets/MIT.webp"
-            alt="MIT Mysore Logo"
-            className="footer-logo mit-logo-footer"
-          />
-          <img
-            src="/assets/ISE.webp"
-            alt="ISE Department Logo"
-            className="footer-logo ise-logo-footer"
-          />
+          <div className="footer-logo-section">
+            <img
+              src="/assets/MIT.webp"
+              alt="MIT Logo"
+              className="footer-logo"
+            />
+            <img
+              src="/assets/ISE.webp"
+              alt="ISE Logo"
+              className="footer-logo"
+            />
+          </div>
         </div>
         <div className="footer-section contact-info">
           <div className="contact-card">
