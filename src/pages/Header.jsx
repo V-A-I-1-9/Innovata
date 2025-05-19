@@ -39,7 +39,6 @@ const CloseIcon = () => (
   </svg>
 );
 
-
 function Header() {
   const [isNavOpen, setIsNavOpen] = useState(false);
 
@@ -56,50 +55,92 @@ function Header() {
 
   return (
     <header className="header">
-      <div className="header-content"> {/* Wrapper for content alignment */}
+      <div className="header-content">
+        {" "}
+        {/* Wrapper for content alignment */}
         {/* Left logo - always visible */}
         <NavLink to="/" className="logo-link" onClick={handleLinkClick}>
-          <img src="/assets/MIT.webp" alt="MIT Logo" className="logo mit-logo" />
+          <img
+            src="/assets/MIT.webp"
+            alt="MIT Logo"
+            className="logo mit-logo"
+          />
         </NavLink>
-
         {/* Navigation */}
         <nav className={`nav ${isNavOpen ? "nav-open" : ""}`}>
           <ul className="nav-list">
             <li className="nav-item">
-              <NavLink to="/" className="nav-link" activeClassName="active" exact onClick={handleLinkClick}>
+              <NavLink
+                to="/"
+                className="nav-link"
+                activeClassName="active"
+                exact
+                onClick={handleLinkClick}
+              >
                 Homepage
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink to="/project" className="nav-link" activeClassName="active" onClick={handleLinkClick}>
+              <NavLink
+                to="/project"
+                className="nav-link"
+                activeClassName="active"
+                onClick={handleLinkClick}
+              >
                 Projects
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink to="/announcements" className="nav-link" activeClassName="active" onClick={handleLinkClick}>
+              <NavLink
+                to="/announcements"
+                className="nav-link"
+                activeClassName="active"
+                onClick={handleLinkClick}
+              >
                 Announcements
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink to="/prizes" className="nav-link" activeClassName="active" onClick={handleLinkClick}>
+              <NavLink
+                to="/prizes"
+                className="nav-link"
+                activeClassName="active"
+                onClick={handleLinkClick}
+              >
                 Prizes
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink to="/guidelines" className="nav-link" activeClassName="active" onClick={handleLinkClick}>
-                Guidelines
+              <NavLink
+                to="/formats"
+                className="nav-link"
+                activeClassName="active"
+                onClick={handleLinkClick}
+              >
+                Formats
               </NavLink>
             </li>
           </ul>
-           {/* ISE Logo inside mobile nav for better space management */}
-          <img src="/assets/ISE.webp" alt="ISE Logo" className="logo ise-logo nav-ise-logo" />
+          {/* ISE Logo inside mobile nav for better space management */}
+          <img
+            src="/assets/ISE.webp"
+            alt="ISE Logo"
+            className="logo ise-logo nav-ise-logo"
+          />
         </nav>
-
         {/* Right logo - visible on desktop, hidden in standard flow on mobile */}
-        <img src="/assets/ISE.webp" alt="ISE Logo" className="logo ise-logo desktop-ise-logo" />
-
+        <img
+          src="/assets/ISE.webp"
+          alt="ISE Logo"
+          className="logo ise-logo desktop-ise-logo"
+        />
         {/* Hamburger Menu Button */}
-        <button className="nav-toggle" onClick={toggleNav} aria-label="Toggle navigation" aria-expanded={isNavOpen}>
+        <button
+          className="nav-toggle"
+          onClick={toggleNav}
+          aria-label="Toggle navigation"
+          aria-expanded={isNavOpen}
+        >
           {isNavOpen ? <CloseIcon /> : <HamburgerIcon />}
         </button>
       </div>

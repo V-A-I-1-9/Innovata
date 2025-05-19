@@ -10,7 +10,7 @@ const Announcements = lazy(() =>
   import("./components/announcements/Announcements")
 );
 const Prizes = lazy(() => import("./components/prizes/Prizes"));
-const Guidelines = lazy(() => import("./components/guidelines/Guidelines"));
+const Formats = lazy(() => import("./components/formats/Formats"));
 const PageNotFound = lazy(() => import("./pages/PageNotFound"));
 
 function App() {
@@ -23,7 +23,7 @@ function App() {
             <Route path="project" element={<Project />} />
             <Route path="announcements" element={<Announcements />} />
             <Route path="prizes" element={<Prizes />} />
-            <Route path="guidelines" element={<Guidelines />} />
+            <Route path="formats" element={<Formats />} />
             <Route path="*" element={<PageNotFound />} />
           </Route>
         </Routes>
