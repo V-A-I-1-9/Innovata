@@ -35,7 +35,7 @@ function Footer() {
               <p className="hod-name">Dr Sharath Kumar Y H</p>
               <p className="hod-title">Professor & Head, Dept. of IS&E</p>
               <div className="contact-links">
-                <a href="tel:+91 9480849443" className="footer-link">
+                <a href="tel:+91 94808 49443" className="footer-link">
                   Mobile
                 </a>
                 <a href="mailto:hodise@mitmysore.in" className="footer-link">

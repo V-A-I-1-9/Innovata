@@ -1,4 +1,3 @@
-// src/components/guidelines/Guidelines.jsx
 import { useState, useEffect } from "react";
 import Papa from "papaparse";
 import styles from "./Formats.module.css"; // We'll keep using this new CSS module file
@@ -56,9 +55,7 @@ function Formats() {
         );
 
         if (!rowWithGuidelineData) {
-          setError(
-            "No guideline data found in the sheet for Phase-1 or Phase-2."
-          );
+          setError("No format data found in the sheet for Phase-1 or Phase-2.");
           setIsLoading(false);
           setAvailablePhases([]); // No data, no phases
           return;
@@ -95,13 +92,13 @@ function Formats() {
         if (phasesFound.length > 0) {
           setSelectedPhase(phasesFound[0]); // Select the first available phase by default
         } else {
-          setError("No valid guideline links found for Phase-1 or Phase-2.");
+          setError("No valid formats links found for Phase-1 or Phase-2.");
         }
         setIsLoading(false);
       },
       error: (err) => {
-        console.error("Error fetching guidelines:", err);
-        setError("Failed to load guidelines. Please try again later.");
+        console.error("Error fetching formats:", err);
+        setError("Failed to load formats. Please try again later.");
         setIsLoading(false);
       },
     });
@@ -115,7 +112,7 @@ function Formats() {
     return (
       <div className={styles.loadingContainer}>
         <FaSpinner className={styles.loadingSpinner} />
-        <p>Loading Guidelines...</p>
+        <p>Loading Formats...</p>
       </div>
     );
   }
@@ -127,7 +124,7 @@ function Formats() {
     <div className={styles.guidelinesPage}>
       <div className={styles.pageHeader}>
         <FaBookOpen className={styles.headerIcon} />
-        <h1 className={styles.pageTitle}>Innovata Guidelines</h1>
+        <h1 className={styles.pageTitle}>Innovata Formats</h1>
         <p className={styles.pageSubtitle}>
           Find all necessary guidelines and templates for project phases.
         </p>
@@ -239,3 +236,143 @@ function Formats() {
 }
 
 export default Formats;
+
+// import { useEffect, useState } from "react";
+// import Papa from "papaparse";
+// import { FaFileAlt, FaSpinner } from "react-icons/fa";
+// import styles from "./Formats.module.css"; // Using your existing CSS
+
+// const Format = () => {
+//   const [data, setData] = useState([]);
+//   const [filteredFormats, setFilteredFormats] = useState([]);
+//   const [selectedScheme, setSelectedScheme] = useState("");
+//   const [selectedPhase, setSelectedPhase] = useState("");
+//   const [loading, setLoading] = useState(true);
+//   const [error, setError] = useState("");
+
+//   const sheetURL = import.meta.env.VITE_SHEET_URL;
+
+//   useEffect(() => {
+//     Papa.parse(sheetURL, {
+//       download: true,
+//       header: true,
+//       complete: (result) => {
+//         const parsed = result.data.filter((row) => row.Scheme); // Filter empty rows
+//         setData(parsed);
+//         setLoading(false);
+//       },
+//       error: (err) => {
+//         setError("Failed to load formats.");
+//         setLoading(false);
+//         console.error(err);
+//       },
+//     });
+//   }, []);
+
+//   useEffect(() => {
+//     if (data.length && selectedScheme && selectedPhase) {
+//       const filtered = data.filter(
+//         (row) =>
+//           row.Scheme?.trim() === selectedScheme && row[selectedPhase]?.trim()
+//       );
+//       setFilteredFormats(filtered);
+//     } else {
+//       setFilteredFormats([]);
+//     }
+//   }, [data, selectedScheme, selectedPhase]);
+
+//   const schemeOptions = Array.from(
+//     new Set(data.map((row) => row.Scheme?.trim()).filter(Boolean))
+//   );
+//   const phaseOptions = ["Phase-1", "Phase-2", "Phase-3"];
+
+//   return (
+//     <div className={styles.guidelinesPage}>
+//       <div className={styles.pageHeader}>
+//         <FaFileAlt className={styles.headerIcon} />
+//         <h1 className={styles.pageTitle}>Innovata Formats</h1>
+//         <p className={styles.pageSubtitle}>
+//           Select your scheme and phase to view available formats.
+//         </p>
+//       </div>
+
+//       <div className={styles.filtersSection}>
+//         <div className={styles.filterGroup}>
+//           <label className={styles.filterLabel}>Select Scheme</label>
+//           <select
+//             value={selectedScheme}
+//             onChange={(e) => setSelectedScheme(e.target.value)}
+//             className={styles.filterSelect}
+//           >
+//             <option value="">-- Choose Scheme --</option>
+//             {schemeOptions.map((scheme, idx) => (
+//               <option key={idx} value={scheme}>
+//                 {scheme}
+//               </option>
+//             ))}
+//           </select>
+//         </div>
+
+//         <div className={styles.filterGroup}>
+//           <label className={styles.filterLabel}>Select Phase</label>
+//           <select
+//             value={selectedPhase}
+//             onChange={(e) => setSelectedPhase(e.target.value)}
+//             className={styles.filterSelect}
+//           >
+//             <option value="">-- Choose Phase --</option>
+//             {phaseOptions.map((phase, idx) => (
+//               <option key={idx} value={phase}>
+//                 {phase}
+//               </option>
+//             ))}
+//           </select>
+//         </div>
+//       </div>
+
+//       <div className={styles.guidelinesContent}>
+//         {loading ? (
+//           <div className={styles.loadingContainer}>
+//             <FaSpinner className={styles.loadingSpinner} />
+//             Loading formats...
+//           </div>
+//         ) : error ? (
+//           <div className={styles.errorContainer}>{error}</div>
+//         ) : selectedScheme && selectedPhase ? (
+//           <>
+//             <h2 className={styles.selectedPhaseTitle}>
+//               {selectedScheme} - {selectedPhase}
+//             </h2>
+//             {filteredFormats.length > 0 ? (
+//               <ul className={styles.guideliensList}>
+//                 {filteredFormats.map((item, idx) => (
+//                   <li key={idx} className={styles.guidelineItem}>
+//                     <FaFileAlt className={styles.linkIcon} />
+//                     <a
+//                       href={item[selectedPhase]}
+//                       target="_blank"
+//                       rel="noopener noreferrer"
+//                       className={styles.guidelineName}
+//                     >
+//                       {item["Format Name"] || `Format ${idx + 1}`}
+//                     </a>
+//                   </li>
+//                 ))}
+//               </ul>
+//             ) : (
+//               <div className={styles.noGuidelinesMessage}>
+//                 No formats available for this scheme and phase.
+//               </div>
+//             )}
+//           </>
+//         ) : (
+//           <div className={styles.noGuidelinesMessage}>
+//             Please select both scheme and phase to view formats.
+//           </div>
+//         )}
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default Format;
